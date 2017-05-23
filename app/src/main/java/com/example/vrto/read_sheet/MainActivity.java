@@ -44,8 +44,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    //Log.d("Minha Lista XSL", retornoPlanilhaJxl().toString());
-
                     ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                             MainActivity.this,
                             android.R.layout.simple_list_item_1,
@@ -61,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 List<String[]>  lista = null;
+                List<String> listaNaoArray = new ArrayList<String>();
                 try {
                     lista = retornoPlanilhaCsv();
                 } catch (IOException e) {
@@ -68,7 +67,13 @@ public class MainActivity extends AppCompatActivity {
                 }
                 for(int i = 0; i < lista.size(); i++) {
                     Log.d("Minha Lista CSV" + i, String.valueOf(lista.get(i)[0]));
+                    listaNaoArray.add(String.valueOf(lista.get(i)[0]));
                 }
+                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+                        MainActivity.this,
+                        android.R.layout.simple_list_item_1,
+                        listaNaoArray );
+                listView.setAdapter(arrayAdapter);
             }
         });
 
