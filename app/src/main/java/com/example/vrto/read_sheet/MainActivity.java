@@ -5,6 +5,8 @@ import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.opencsv.CSVReader;
@@ -25,6 +27,8 @@ import jxl.read.biff.BiffException;
 public class MainActivity extends AppCompatActivity {
 
     ListView listView;
+    Button btnCsv;
+    Button btnXsl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,19 +36,35 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         listView = (ListView) findViewById(R.id.listaValores);
+        btnCsv = (Button) findViewById(R.id.csv);
+        btnXsl = (Button) findViewById(R.id.xls);
 
-        try {
-            //System.out.println(retornoPlanilhaJxl());
-            Log.d("Minha Lista XSL", retornoPlanilhaJxl().toString());
-            //Log.d("Minha Lista CSV", retornoPlanilhaCsv().toString());
-            List<String[]>  lista = retornoPlanilhaCsv();
-            for(int i = 0; i < lista.size(); i++) {
-                Log.d("Minha Lista CSV" + i, String.valueOf(lista.get(i)[0]));
+        btnXsl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    Log.d("Minha Lista XSL", retornoPlanilhaJxl().toString());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
+        });
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        btnCsv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                List<String[]>  lista = null;
+                try {
+                    lista = retornoPlanilhaCsv();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                for(int i = 0; i < lista.size(); i++) {
+                    Log.d("Minha Lista CSV" + i, String.valueOf(lista.get(i)[0]));
+                }
+            }
+        });
+
     }
 
     public List<String> retornoPlanilhaJxl(/*String key*/) throws IOException {
