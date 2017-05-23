@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -43,7 +44,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    Log.d("Minha Lista XSL", retornoPlanilhaJxl().toString());
+                    //Log.d("Minha Lista XSL", retornoPlanilhaJxl().toString());
+
+                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+                            MainActivity.this,
+                            android.R.layout.simple_list_item_1,
+                            retornoPlanilhaJxl() );
+                    listView.setAdapter(arrayAdapter);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
