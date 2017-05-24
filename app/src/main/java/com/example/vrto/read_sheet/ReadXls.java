@@ -32,13 +32,12 @@ public class ReadXls {
                 Sheet sheet = w.getSheet(0);
                 // Loop over column and lines
                 for (int j = 0; j < sheet.getRows(); j++) {
-                    Cell cell = sheet.getCell(0, j);
+                    // Cell cell = sheet.getCell(0, j);
                     // if(cell.getContents().equalsIgnoreCase(key)){
                     for (int i = 0; i < sheet.getColumns(); i++) {
                         Cell cel = sheet.getCell(i, j);
                         if(!cel.getContents().isEmpty() &&
-                                !"".contains(cel.getContents()) &&
-                                !" ".contains(cel.getContents())) {
+                                !"".contains(cel.getContents())) {
                             resultSet.add(cel.getContents());
                         }
 

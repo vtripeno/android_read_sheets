@@ -44,7 +44,6 @@ public class ReadCsv {
                 Log.d("Minha Lista CSV" + i, String.valueOf(questionList.get(i)[0]));
 
                 if(!String.valueOf(questionList.get(i)[0]).isEmpty() &&
-                        !" ".contains(String.valueOf(questionList.get(i)[0])) &&
                         !"".contains(String.valueOf(questionList.get(i)[0]))){
                     lista.add(String.valueOf(questionList.get(i)[0]));
                 }
