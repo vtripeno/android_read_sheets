@@ -19,8 +19,10 @@ import java.util.List;
 
 public class ReadCsv {
 
-    public static List<String[]> retornoPlanilhaCsv() throws IOException {
+    public static List<String> retornoPlanilhaCsv() throws IOException {
         List<String[]> questionList = new ArrayList();
+        List<String> lista = new ArrayList<String>();
+        int contador = 0;
 
         try {
             File inputWorkbook = new File(String.valueOf(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)) + "/Planilha_teste.csv");
@@ -34,12 +36,26 @@ public class ReadCsv {
             //csvReader.readNext();
 
             while ((line = csvReader.readNext()) != null) {
+                line[contador] = line[contador].replace(";", " ").trim();
                 questionList.add(line);
             }
+
+            for(int i = 0; i < questionList.size(); i++) {
+                Log.d("Minha Lista CSV" + i, String.valueOf(questionList.get(i)[0]));
+
+                if(!String.valueOf(questionList.get(i)[0]).isEmpty() &&
+                        !" ".contains(String.valueOf(questionList.get(i)[0])) &&
+                        !"".contains(String.valueOf(questionList.get(i)[0]))){
+                    lista.add(String.valueOf(questionList.get(i)[0]));
+                }
+            }
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return questionList;
+
+        return lista;
     }
 
 }

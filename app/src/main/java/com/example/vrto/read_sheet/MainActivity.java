@@ -48,22 +48,19 @@ public class MainActivity extends AppCompatActivity {
         btnCsv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                List<String[]>  lista = null;
-                List<String> listaNaoArray = new ArrayList<String>();
+
+
                 try {
-                    lista = ReadCsv.retornoPlanilhaCsv();
+                    ArrayAdapter<String> arrayAdapter = null;
+                    arrayAdapter = new ArrayAdapter<String>(
+                            MainActivity.this,
+                            android.R.layout.simple_list_item_1,
+                            ReadCsv.retornoPlanilhaCsv() );
+                    listView.setAdapter(arrayAdapter);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                for(int i = 0; i < lista.size(); i++) {
-                    Log.d("Minha Lista CSV" + i, String.valueOf(lista.get(i)[0]));
-                    listaNaoArray.add(String.valueOf(lista.get(i)[0]));
-                }
-                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
-                        MainActivity.this,
-                        android.R.layout.simple_list_item_1,
-                        listaNaoArray );
-                listView.setAdapter(arrayAdapter);
+
             }
         });
 

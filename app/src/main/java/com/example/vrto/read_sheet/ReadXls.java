@@ -37,7 +37,8 @@ public class ReadXls {
                     for (int i = 0; i < sheet.getColumns(); i++) {
                         Cell cel = sheet.getCell(i, j);
                         if(!cel.getContents().isEmpty() &&
-                                !"".contains(cel.getContents())) {
+                                !"".contains(cel.getContents()) &&
+                                !" ".contains(cel.getContents())) {
                             resultSet.add(cel.getContents());
                         }
 

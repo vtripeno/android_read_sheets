@@ -23,6 +23,7 @@ public class ReadPdf {
             int n = reader.getNumberOfPages();
             for (int i = 0; i <n ; i++) {
                 if(!PdfTextExtractor.getTextFromPage(reader, i+1).trim().isEmpty() &&
+                        !" ".contains(PdfTextExtractor.getTextFromPage(reader, i+1).trim()) &&
                         !"".contains(PdfTextExtractor.getTextFromPage(reader, i+1).trim())) {
 
                     parsedText = PdfTextExtractor.getTextFromPage(reader, i + 1).trim().split("\n");
