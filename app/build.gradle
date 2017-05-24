@@ -47,6 +47,6 @@ dependencies {
     // https://mvnrepository.com/artifact/com.opencsv/opencsv
     compile group: 'com.opencsv', name: 'opencsv', version: '3.9'
 
-
+    compile 'com.itextpdf:itextg:5.5.10'
 
 }

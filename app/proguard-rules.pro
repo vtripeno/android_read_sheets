@@ -71,4 +71,4 @@
     public static <fields>;
 }
 
--keep public class org.apache.poi.** {*;}
+-keep public class com.org.apache.poi.** {*;}
