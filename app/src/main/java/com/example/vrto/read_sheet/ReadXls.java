@@ -21,6 +21,7 @@ public class ReadXls {
 
     public static List<String> retornoPlanilhaXls(/*String key*/) throws IOException {
         List<String> resultSet = new ArrayList<String>();
+        List<String> listaAuxiliar = new ArrayList<>();
 
         Log.d("CAMINHO", String.valueOf(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)) + "/Planilha_teste.xls");
         File inputWorkbook = new File(String.valueOf(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)) + "/Planilha_teste.xls");
@@ -57,7 +58,14 @@ public class ReadXls {
         if(resultSet.size()==0){
             resultSet.add("Data not found..!");
         }
-        return resultSet;
+        for (int i = 0; i < resultSet.size(); i++) {
+            if(i % 2 != 0) {
+                listaAuxiliar.add(resultSet.get(i - 1).concat(" " + resultSet.get(i)));
+            }
+
+        }
+        System.out.println(listaAuxiliar.toString());
+        return listaAuxiliar;
 
     }
 
