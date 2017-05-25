@@ -22,8 +22,7 @@ public class ReadPdf {
             PdfReader reader = new PdfReader(String.valueOf(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)) + "/Planilha_teste.pdf");
             int n = reader.getNumberOfPages();
             for (int i = 0; i <n ; i++) {
-                if(!PdfTextExtractor.getTextFromPage(reader, i+1).trim().isEmpty() &&
-                        !"".contains(PdfTextExtractor.getTextFromPage(reader, i+1).trim())) {
+                if(Validations.verificaString(PdfTextExtractor.getTextFromPage(reader, i+1).trim())) {
 
                     parsedText = PdfTextExtractor.getTextFromPage(reader, i + 1).trim().split("\n");
                     for(int j = 0; j < parsedText.length; j++) {

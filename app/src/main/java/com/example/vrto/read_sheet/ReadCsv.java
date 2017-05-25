@@ -43,8 +43,7 @@ public class ReadCsv {
             for(int i = 0; i < questionList.size(); i++) {
                 Log.d("Minha Lista CSV" + i, String.valueOf(questionList.get(i)[0]));
 
-                if(!String.valueOf(questionList.get(i)[0]).isEmpty() &&
-                        !"".contains(String.valueOf(questionList.get(i)[0]))){
+                if(Validations.verificaString(String.valueOf(questionList.get(i)[0]))){
                     lista.add(String.valueOf(questionList.get(i)[0]));
                 }
             }
